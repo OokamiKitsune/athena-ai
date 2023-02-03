@@ -5,9 +5,12 @@ import styles from "./index.module.css";
 export default function Home() {
   const [questionInput, setQuestionInput] = useState("");
   const [result, setResult] = useState();
+  const [staticQuestion, setStaticQuestion] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   async function onSubmit(event) {
     event.preventDefault();
+    setIsLoading(true)
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -24,11 +27,15 @@ export default function Home() {
       console.log(data)
       setResult(data.result);
       setQuestionInput("");
+      setStaticQuestion(questionInput);
     } catch(error) {
       // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
+    } finally {
+      setIsLoading(false)
     }
+
   }
 
   return (
@@ -56,8 +63,14 @@ export default function Home() {
           />
           <input type="submit" value="Ask" />
         </form>
-        <div className={styles.result}>{result}</div>
-        <div> {questionInput}</div>
+
+        <center><br></br>
+        <div>You asked me: <br></br><b>{staticQuestion}</b></div>
+        </center>
+
+        {isLoading ? <div>Thinking...</div> : <div className={styles.result}>{result}</div>}
+       
+
       </main>
     </div>
   );
