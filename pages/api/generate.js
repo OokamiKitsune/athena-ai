@@ -9,7 +9,7 @@ export default async function (req, res) {
   if (!configuration.apiKey) {
     res.status(500).json({
       error: {
-        message: "API Authentication failed.",
+        message: "OpenAI API key not configured, please follow instructions in README.md",
       }
     });
     return;
