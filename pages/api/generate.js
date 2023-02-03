@@ -9,7 +9,7 @@ export default async function (req, res) {
   if (!configuration.apiKey) {
     res.status(500).json({
       error: {
-        message: "OpenAI API key not configured, please follow instructions in README.md",
+        message: "Authentication error.",
       }
     });
     return;
@@ -52,7 +52,11 @@ export default async function (req, res) {
   }
 }
 function generatePrompt(question) {
-  const capitalizedAnswer =
+  if (question === "Who are you?" || question === "What are you") {
+    return "I am Athena. An Artificial Inteligence that can answer most questions. Please. Ask me anything."  
+    } else {
+      const capitalizedAnswer =
     question[0].toUpperCase() + question.slice(1).toLowerCase();
-  return capitalizedAnswer;
+      return capitalizedAnswer;
+    }
 }
