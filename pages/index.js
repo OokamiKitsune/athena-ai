@@ -8,6 +8,7 @@ export default function Home() {
   const [staticQuestion, setStaticQuestion] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  
   async function onSubmit(event) {
     event.preventDefault();
     setIsLoading(true)
