@@ -10,7 +10,7 @@ export default async function (req, res) {
   if (!configuration.apiKey) {
     res.status(500).json({
       error: {
-        message: "Authentication error.",
+        message: "Request failed due to an an issue with authenticating API call.",
       }
     });
     return;
