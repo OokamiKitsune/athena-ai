@@ -34,6 +34,9 @@ export default function Home() {
       setResult(data.result);
       setQuestionInput("");
       setStaticQuestion(questionInput);
+      
+      //tokenLimitReached();
+      
       console.log("Query: ", staticQuestion)
       console.log("Response: ", data)
     } catch(error) {
@@ -67,7 +70,7 @@ export default function Home() {
       <main className={styles.main}>
         <img src="/athena.png" className={styles.icon} />
        
-        <p>I can give you answers to any question that is rooted in the truth.</p>
+        <p></p>
         <div>
         <Link href="/">
             
@@ -95,7 +98,7 @@ export default function Home() {
         {isLoading ? <div class={styles.loader}></div> : <div className={styles.result}>{result}</div> }
      
       </main> 
-      : 'Connect your Solana wallet to continue. Learn more aboout Athena AI'}
+      : <div>Connect your Solana wallet to continue. Click <Link href="/about"> here </Link> to learn more about Athena AI</div>} 
       
       
 

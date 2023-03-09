@@ -17,6 +17,8 @@ export default async function (req, res) {
     return;
   }
 
+
+
   const question = req.body.question || '';
   if (question.trim().length === 0) {
     res.status(400).json({
@@ -36,10 +38,36 @@ export default async function (req, res) {
       frequency_penalty: 0,
       presence_penalty: 0,
     });
+    
+    // To-do Token limit reached clause
+
+    
+    if (answer.data.choices[0].finish_reason === 'length') {
+      answer_limit = true
+      console.log('Token limit was reached for this request. Answer body was truncated.')
+			
+    
+    }
+
+    // To-do: display token limit message on DOM.
+
+		// const answer_limit = answer.data.choices[0].finish_reason;
+		// if (answer_limit === 'length') {
+			
+		// }
+    
     res.status(200).json({ result: answer.data.choices[0].text });
+    // Log answer to console
     console.log(answer.data.choices)
+
+
+
+
+
   } catch(error) {
-    // Consider adjusting the error handling logic for your use case
+    
+    // Error handling for API response.
+
     if (error.response) {
       console.error(error.response.status, error.response.data);
       res.status(error.response.status).json(error.response.data);
@@ -53,6 +81,8 @@ export default async function (req, res) {
     }
   }
 }
+
+
 function generatePrompt(question) {
   if (question === "Who are you?" || question === "What are you") {
     return "I am Athena. An Artificial Inteligence that can answer most questions. Please. Ask me anything."  
