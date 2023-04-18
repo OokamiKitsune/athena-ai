@@ -1,5 +1,288 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 
+
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff2)
+      format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIRegular.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ColfaxAI";
+  src: url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff2) format("woff2"),
+    url(https://cdn.openai.com/API/fonts/ColfaxAIBold.woff) format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: black; }
+}
+
+
+.main,
+.main input {
+  font-size: 16px;
+  line-height: 24px;
+  color: #353740;
+  font-family: "ColfaxAI", Helvetica, sans-serif;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+  background-color: #ffffffb5;
+}
+.main .icon {
+  width: 250px;
+}
+.main h3 {
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: bold;
+  color: #202123;
+  margin: 16px 0 40px;
+}
+.main form {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+.main input[type="text"] {
+  padding: 25px 12px;
+  border: 1px solid #c65757;
+  border-radius: 4px;
+  margin-bottom: 24px;
+  outline-color: #c65757;
+}
+.main ::placeholder {
+  color: #8e8ea0;
+  opacity: 1;
+}
+.main input[type="submit"] {
+  padding: 12px 0;
+  color: #fff;
+  background-color: #c12c2c;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+}
+.main .result {
+  
+  box-sizing: content-box;
+  font-weight: bold;
+  margin-top: 40px;
+  max-width: 60%;
+  background-color: #ffffff00;
+
+  animation: typing 1s steps(500, end), blink-caret .75s step-end infinite;
+
+}
+
+
+
+
+
+.navbar {
+  background-color: #f2f2f2;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin: 0 10px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.nav-links li a:hover {
+  color: #666;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  font-weight: bold;
+  padding: 0;
+  margin: 0 10px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  display: none;
+}
+
+.dropdown-menu a {
+  display: block;
+  margin: 5px 0;
+}
+
+.dropdown-menu a:hover {
+  color: #666;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.loader {
+  border: 12px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 12px solid #c12c2c;
+  width: 35px;
+  height: 35px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin .8s linear infinite;
+}
+
+
+.loginBox {
+  width: 400px;
+  margin: 0 auto;
+  padding: 30px;
+  border: 2px solid #ccc; /* Add a 1px solid border with a gray color */
+  border-radius: 5px; /* Add a 5px border radius */
+
+  align-items: center;
+  text-align: center;
+  font-family: "ColfaxAI", Helvetica, sans-serif;
+  
+  
+}
+
+@media only screen and (max-width: 600px) {
+  .loginBox {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+
+.email {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+  background-color: #ffffffb5;
+  font-family: "ColfaxAI", Helvetica, sans-serif;
+
+
+  
+}
+
+.email input {
+  font-size: 30px;
+  line-height: 30px;
+  color: #660061e1;
+}
+
+.email input::placeholder{
+  text-align: center;
+}
+
+.password {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+  background-color: #ffffffb5;
+  font-family: "ColfaxAI", Helvetica, sans-serif;
+}
+
+.password input {
+  
+  font-size: 30px;
+  line-height: 30px;
+  color: #660061e1;
+}
+
+.password input::placeholder{
+  text-align: center;
+}
+
+.signup input[type="submit"]{
+  
+  align-items: center;
+  padding: 30px 60px;
+
+  color: #ffffffd8;
+  background-color: #660061e1;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  font-size: x-large;
+  cursor: pointer;
+}
+
+.signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+
+
 .wallet-adapter-button {
     background-color: transparent;
     border: none;
@@ -10,14 +293,14 @@
     font-family: 'DM Sans', 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 16px;
     font-weight: 600;
-    height: 80px;
+    height: 48px;
     line-height: 48px;
     padding: 0 24px;
     border-radius: 4px;
 }
 
 .wallet-adapter-button-trigger {
-    background-color: #c12c2c;
+    background-color: #512da8;
 }
 
 .wallet-adapter-button:not([disabled]):focus-visible {
