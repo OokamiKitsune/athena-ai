@@ -1,16 +1,13 @@
 // Logic that handles writing new user to a MySql db.
 require('dotenv').config();
 const mysql = require('mysql2');
-const bcrypt = require('bcrypt');
-
+const bcryptjs = require('bcryptjs');
 
 // Assign env variables for database access.
 const user = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
 const host = process.env.DB_ENDPOINT;
 const database = process.env.DB;
-
-
 
 // Connect to database
 const connection = mysql.createConnection({
@@ -21,7 +18,6 @@ const connection = mysql.createConnection({
     // authPlugin: 'caching_sha2_password'
 });
 
-
 try {
     connection.connect();
     console.log('Connected!')
@@ -29,8 +25,6 @@ try {
 } catch (error) {
     console.log('Error connecting to database endpoint.')
 };
-    
-
 
 function createNewUser(username, email, password, callback) {
     
@@ -44,51 +38,42 @@ function createNewUser(username, email, password, callback) {
         if (error) {
             callback(error, null);
         } else if (results.length > 0) {
-            console.log('A user with that email address already exsists');
+            console.log('A user with that email address already exists');
             connection.end();
             return;
         } else {
-            // Insert the new record
-
 
             // Hash user password.
-    bcrypt.hash(password, 4, function(err, hash){
-        if (err) {
-            callback(err);
-            console.log(err);
-            return;
-        }
-        console.log(hash)
-        console.log(username)
-        console.log(email)
-        // Sanitize inputs.
-        const sqlQuery = 'INSERT INTO users (username, email, password) VALUES (?,?,?)';
-        const accountValues = [username, email, hash];
+            bcryptjs.hash(password, 4, function(err, hash){
+                if (err) {
+                    callback(err);
+                    console.log(err);
+                    return;
+                }
+                console.log(hash)
+                console.log(username)
+                console.log(email)
 
-        // Write to database.
-        connection.query(sqlQuery, accountValues, function(err, result) {
-            if (err) {
-                callback(err);
-                console.log(err)
-                connection.end();
-                return;
-            }
+                // Sanitize inputs.
+                const sqlQuery = 'INSERT INTO users (username, email, password) VALUES (?,?,?)';
+                const accountValues = [username, email, hash];
 
-            callback(null, result);
-            console.log(result)
-            connection.end();
-        });
-    });
+                // Write to database.
+                connection.query(sqlQuery, accountValues, function(err, result) {
+                    if (err) {
+                        callback(err);
+                        console.log(err)
+                        connection.end();
+                        return;
+                    }
 
-            
-
-
+                    callback(null, result);
+                    console.log(result)
+                    connection.end();
+                });
+            });
         }
     });
-
+} // Add a closing bracket here
 
 module.exports = createNewUser;
-
-}
-
-createNewUser('test', 'test@test1.com', 'password');

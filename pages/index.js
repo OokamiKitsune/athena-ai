@@ -1,9 +1,12 @@
 import Head from "next/head";
 import { useState } from "react";
-import styles from "./index.module.css";
+import styles from "../styles/index.module.css";
 import Link from 'next/link';
 import { WalletMultiButton } from "../components/connect_button/WalletMultiButton";
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
+import NavBar from '../components/NavBar'
+
+
 
 
 export default function Home() {
@@ -49,16 +52,25 @@ export default function Home() {
 
   }
 
+
+
+
   return (
     <div>
+      
       <Head>
         <title>Athena AI</title>
         <link rel="icon" href="/athena.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
       </Head>
-      <WalletMultiButton/>
+      <div><NavBar /></div>
+      <div className={styles.loginBox}> <WalletMultiButton/>
+      <div className={styles.signup}>
+        <input type="submit" value="Login" />
+        </div>
       
- 
+      </div>
+      
       
     
 
@@ -69,7 +81,7 @@ export default function Home() {
       ? 
       <main className={styles.main}>
         <img src="/athena.png" className={styles.icon} />
-       
+        
         <p></p>
         <div>
         <Link href="/">

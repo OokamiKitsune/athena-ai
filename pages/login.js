@@ -8,6 +8,7 @@ export default function Login() {
     event.preventDefault();
     console.log('Email:', email);
     console.log('Password:', password);
+    
   };
 
   return (
